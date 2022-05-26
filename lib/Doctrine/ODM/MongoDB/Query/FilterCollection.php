@@ -177,11 +177,12 @@ class FilterCollection
             return array();
         }
 
-        return call_user_func_array(
-            array($this->cm, 'merge'),
-            array_map(
-                function($filter) use ($class) { return $filter->addFilterCriteria($class); },
-                $this->enabledFilters
+       return $this->cm->merge(
+            ...array_map(
+                static function ($filter) use ($class) {
+                    return $filter->addFilterCriteria($class);
+                },
+                array_values($this->enabledFilters)
             )
         );
     }
