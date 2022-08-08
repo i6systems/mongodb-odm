@@ -400,12 +400,9 @@ class Query extends \Doctrine\MongoDB\Query\Query
      */
     public function count($foundOnly = false)
     {
-        @trigger_error(
-            sprintf('The %s method is deprecated since doctrine/mongodb-odm 1.3 and will be removed in 2.0. Please run separate count queries instead.', __METHOD__),
-            E_USER_DEPRECATED
+        throw new \Exception(
+            sprintf('The %s method is deprecated since doctrine/mongodb-odm 1.3 and will be removed in 2.0. Please run separate count queries instead.', __METHOD__)
         );
-
-        return parent::count($foundOnly);
     }
 
     /**
