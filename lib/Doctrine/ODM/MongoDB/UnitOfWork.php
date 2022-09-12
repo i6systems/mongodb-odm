@@ -991,10 +991,10 @@ class UnitOfWork implements PropertyChangedListener
             switch ($state) {
                 case self::STATE_NEW:
                     if ( ! $assoc['isCascadePersist']) {
-                        throw new \InvalidArgumentException('A new document was found through a relationship that was not'
+                        trigger_error('A new document was found through a relationship that was not'
                             . ' configured to cascade persist operations: ' . $this->objToStr($entry) . '.'
                             . ' Explicitly persist the new document or configure cascading persist operations'
-                            . ' on the relationship.');
+                            . ' on the relationship.', E_USER_WARNING);
                     }
 
                     $this->persistNew($targetClass, $entry);
